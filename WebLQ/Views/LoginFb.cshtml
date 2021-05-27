@@ -1,0 +1,67 @@
+﻿
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>Login from Facebook </title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+
+    @*//login fb*@
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '589160711811317',
+                cookie: true,
+                xfbml: true,
+                version: 'v2.1'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        /*kiểm tra trạng thái đăng nhập*/
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                var cookieArr = document.cookie.split(";");
+                statusChangeCallback(response);
+                //guiwr coookkc
+
+            });
+        }
+        function getCookie() {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+    </script>
+    @*Tạo buttn đăng nhập fb*@
+
+
+    <h1>
+        Login from Facebook
+    </h1>
+    <div id="auth-status">
+        <div id="auth-loggedout">
+            <fb:login-button scope="public_profile,email"
+                             onlogin="checkLoginState();">
+            </fb:login-button>
+        </div>
+        <div id="auth-loggedin" style="display: none">
+            Hi, <span id="auth-displayname"></span>(<a href="#" id="auth-logoutlink">logout</a>)
+        </div>
+    </div>
+</body>
+</html>
