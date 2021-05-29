@@ -50,7 +50,7 @@ namespace WebLQ
 
             app.UseMvc(endpoints =>
             {
-                endpoints.MapRoute("default", "{Controller}/{Action}", new { Controller = "Home", Action = "Index" });
+                endpoints.MapRoute("default", "{Controller}/{Action}", new { Controller = "Home"   , Action = "Index" });
             });
         }
     }

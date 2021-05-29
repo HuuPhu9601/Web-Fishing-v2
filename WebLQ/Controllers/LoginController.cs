@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebLQ.Models;
 
 namespace WebLQ.Controllers
 {
@@ -10,9 +11,15 @@ namespace WebLQ.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            Accounts acc = new Accounts();
+            return View(acc);
         }
 
+        [HttpPost]
+        public IActionResult GetAccount(Accounts acc)
+        {
 
+            return Ok();
+        }
     }
 }

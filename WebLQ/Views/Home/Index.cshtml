@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -46,19 +48,22 @@
                     <p>Đăng nhập nhận một lần quay miễn phí:<span></span></p>
                     <div class="btn_cont">
                         <div id="fb-root"></div>
-                        <script>
-                            window.fbAsyncInit = function () {
-                                FB.init({ appId: '589160711811317', status: true, cookie: true, oauth: true, xfbml: true });
-                            };
-                            // Load the SDK Asynchronously
-                            (function (d) {
-                                var js, id = 'facebook-jssdk'; if (d.getElementById(id)) { return; }
-                                js = d.createElement('script'); js.id = id; js.async = true;
-                                js.src = "//connect.facebook.net/en_US/all.js";
-                                d.getElementsByTagName('head')[0].appendChild(js);
-                            }(document));
-                        </script>
-                        <div class="fb-login-button">Login with Facebook</div>
+                        @*<script>
+                                window.fbAsyncInit = function () {
+                                    FB.init({ appId: '589160711811317', status: true, cookie: true, oauth: true, xfbml: true });
+                                };
+                                // Load the SDK Asynchronously
+                                (function (d) {
+                                    var js, id = 'facebook-jssdk'; if (d.getElementById(id)) { return; }
+                                    js = d.createElement('script'); js.id = id; js.async = true;
+                                    js.src = "//connect.facebook.net/en_US/all.js";
+                                    d.getElementsByTagName('head')[0].appendChild(js);
+                                }(document));
+                            </script>*@
+                    <a asp-action="Index" asp-controller="Login">Login with Facebook</a>
+                    <button asp-action="Index" asp-controller="Login">
+                       
+                    </button>
                     </div>
                 </div>
             </div>
@@ -106,7 +111,7 @@
                             </section>
                             <!-- <div class="wrapper typo" id="wrapper" style="padding-left: 160px;">
 
-            </div> -->
+                            </div> -->
                         </div>
 
                     </div>
